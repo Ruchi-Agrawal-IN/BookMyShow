@@ -5,6 +5,7 @@ const axiosInstance = axios.create({
   headers: {
     credentials: "include",
     "Content-Type": "application/json",
+    authorization: `Bearer${localStorage.getItem("token")}`,
   },
 });
 

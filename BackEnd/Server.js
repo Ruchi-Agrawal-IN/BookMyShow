@@ -2,6 +2,7 @@ const debug = require("debug")("app:startup");
 module.exports = debug;
 const express = require("express");
 const cors = require("cors");
+
 //create a .env file and config it here
 require("dotenv").config();
 const dbConfig = require("./config/DBConfig");
