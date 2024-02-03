@@ -13,8 +13,12 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 // create routes
+//userRoute
 const userRoute = require("./routes/UserRoute");
 app.use("/api/users", userRoute);
+// movie Route
+const moviesRoute = require("./routes/MovieRoute");
+app.use("/api/movies", moviesRoute);
 
 //start express server
 try {

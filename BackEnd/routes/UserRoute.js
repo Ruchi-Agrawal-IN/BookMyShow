@@ -2,6 +2,7 @@ const router = require("express").Router();
 const User = require("../models/UserModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const authMiddleware = require("../middleware/AuthMiddleware");
 // import debug from "../Server";
 router.post("/register", async (req, res) => {
   try {
@@ -51,10 +52,34 @@ router.post("/login", async (req, res) => {
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
-    res.status(200).json({ message: "Logged in", data: token });
+    res.status(200).json({
+      success: true,
+      message: `${user.email} is Logged in`,
+      data: token,
+    });
   } catch (error) {
     debug("login failed");
-    res.status(500).json({ success: false, message: e.message });
+    res
+      .status(500)
+      .json({ success: false, message: `Login Failed: ${e.message}` });
+  }
+});
+router.get("/get-current-user", authMiddleware, async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.body.userId).select(
+      "-password"
+    );
+    console.log(`get-current-user current user is ${currentUser}`);
+    res.send({
+      success: true,
+      message: "user is fetched",
+      data: currentUser,
+    });
+  } catch (error) {
+    res.send({
+      success: false,
+      message: error.message,
+    });
   }
 });
 module.exports = router;

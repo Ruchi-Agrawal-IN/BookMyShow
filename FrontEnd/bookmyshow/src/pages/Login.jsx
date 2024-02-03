@@ -1,21 +1,29 @@
 import { Form, Button, message } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LoginUser } from "../apiCalls/users";
+import { useEffect } from "react";
+
 function Login() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/");
+    }
+  }, []);
+
   const onFinish = async (values) => {
-    console.log("login clicked");
-    console.log({ value: values });
     try {
       const { data } = await LoginUser(values);
-      console.log("login data is", data);
       if (data.success) {
         message.success(data.message);
         localStorage.setItem("token", data.data);
+        // navigate for next page
+        navigate("/");
       } else {
         message.error(data.message);
       }
     } catch (error) {
-      message.error("Internal Server Error");
+      message.error(`LoginUser API error: ${error.message}`);
     }
   };
 
@@ -30,14 +38,14 @@ function Login() {
             name="email"
             rules={[{ required: true, message: "Please input your email!" }]}
           >
-            <input type="email" />
+            <input type="email" autoComplete="off" />
           </Form.Item>
           <Form.Item
             label="Password"
             name="password"
             rules={[{ required: true, message: "Please input your password!" }]}
           >
-            <input type="password" />
+            <input type="password" autoComplete="current-password" />
           </Form.Item>
 
           <div className="flex flex-col mt-2 gap-1">

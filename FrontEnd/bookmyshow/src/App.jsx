@@ -8,6 +8,8 @@ import "./stylesheets/alignments.css";
 import "./stylesheets/form-elements.css";
 import "./stylesheets/sizes.css";
 import "./stylesheets/theme.css";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Admin from "./pages/admin";
 
 function App() {
   return (
@@ -15,9 +17,26 @@ function App() {
       <h1> BMS Application</h1>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <Admin />
+              </ProtectedRoute>
+            }
+          />
+          {/* <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+          <Route path="/movie/:id" element={<ProtectedRoute><TheatresForMovie /></ProtectedRoute>} /> */}
         </Routes>
       </BrowserRouter>
     </>
