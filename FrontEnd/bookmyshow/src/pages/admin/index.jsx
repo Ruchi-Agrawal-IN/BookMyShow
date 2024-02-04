@@ -1,7 +1,7 @@
 import PageTitle from "../../components/PageTitle";
 import { Tabs } from "antd";
 import MoviesList from "./MovieList";
-import TheatresList from "./TheatresList";
+import TheatresList from "../profile";
 // import UpcomingList from './UpcomingList'
 
 function Admin() {

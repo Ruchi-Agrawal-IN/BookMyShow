@@ -19,9 +19,12 @@ app.use("/api/users", userRoute);
 // movie Route
 const moviesRoute = require("./routes/MovieRoute");
 app.use("/api/movies", moviesRoute);
+//theatre route
 const theatresRoute = require("./routes/TheaterRoute");
 app.use("/api/theatres", theatresRoute);
-
+//shows route
+const showsRoute = require("./routes/ShowRoute");
+app.use("/api/shows", showsRoute);
 //start express server
 try {
   app.listen(PORT, () => {

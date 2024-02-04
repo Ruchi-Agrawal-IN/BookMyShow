@@ -1,8 +1,18 @@
-import axiosInstance from "./axiosInstance";
+import axiosInstance from "./axiosInstance.js";
 const MODEL = "movies";
 export const GetAllMovies = async () => {
   try {
     const response = await axiosInstance.get(`${MODEL}/list`);
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const GetMovieById = async (movieId) => {
+  try {
+    // console.log({ payload })
+    const response = await axiosInstance().get(`${MODEL}/get-by-id/${movieId}`);
     return response;
   } catch (error) {
     return error;

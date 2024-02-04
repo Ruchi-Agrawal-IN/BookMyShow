@@ -38,7 +38,6 @@ router.post("/login", async (req, res) => {
         message: "user doesnot exist!",
       });
     }
-
     const isPasswordValid = await bcrypt.compare(
       req.body.password,
       user.password

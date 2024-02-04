@@ -13,7 +13,7 @@ export const GetTheatresByUserId = async (payload) => {
 };
 export const GetAllTheatres = async () => {
   try {
-    const response = await axiosInstance.get(`${MODEL}/get-all-theatres`);
+    const response = await axiosInstance.get(`theatres/get-all-theatres`);
     return response;
   } catch (error) {
     console.log(error);

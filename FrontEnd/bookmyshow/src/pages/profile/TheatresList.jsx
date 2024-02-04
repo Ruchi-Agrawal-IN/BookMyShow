@@ -1,7 +1,6 @@
 import { Table, message } from "antd";
 import { useEffect, useState } from "react";
-import { GetAllTheatres, UpdateTheatre } from "../../apicalls/Theatres";
-
+import { GetAllTheatres, UpdateTheatre } from "../../apiCalls/Theatres";
 function TheatresList() {
   const [theatres, setTheatres] = useState([]);
 

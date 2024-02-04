@@ -62,4 +62,23 @@ router.delete("/delete-movie", async (req, res) => {
     });
   }
 });
+
+
+router.get("/get-by-id/:movieId", async (req, res) => {
+  try {
+    const movie = await Movie.findById(req.params.movieId);
+
+    res.status(200).send({
+      success: true,
+      message: "Movie details fetched",
+      movie,
+    });
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      message: "There was some issue in fetching movie.",
+    });
+  }
+});
+
 module.exports = router;

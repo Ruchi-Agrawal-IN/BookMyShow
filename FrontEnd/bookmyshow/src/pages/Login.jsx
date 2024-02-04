@@ -16,9 +16,9 @@ function Login() {
       const { data } = await LoginUser(values);
       if (data.success) {
         message.success(data.message);
-        localStorage.setItem("token", data.data);
+        await localStorage.setItem("token", data.data);
         // navigate for next page
-        navigate("/");
+        // navigate("/");
       } else {
         message.error(data.message);
       }

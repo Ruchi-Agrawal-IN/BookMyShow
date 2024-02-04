@@ -4,6 +4,7 @@ import moment from "moment";
 import { GetAllTheatresForMovie } from "../../apiCalls/Theatres";
 function TheatresForMovie() {
   const params = useParams();
+
   const [movie, setMovie] = useState({});
   useEffect(() => {
     getTheatersData();
@@ -37,18 +38,17 @@ function TheatresForMovie() {
         </div>
 
         {/* <div className="mr-3">
-            <h1 className="text-md ">Select Date</h1>
-            <input
-              type="date"
-              min={moment().format("YYYY-MM-DD")}
-              value={date}
-              onChange={(e) => {
-                setDate(e.target.value);
-                navigate(`/movie/${params.id}?date=${e.target.value}`);
-              }}
-            
-            />
-          </div> */}
+          <h1 className="text-md ">Select Date</h1>
+          <input
+            type="date"
+            min={moment().format("YYYY-MM-DD")}
+            value={date}
+            onChange={(e) => {
+              setDate(e.target.value);
+              navigate(`/movie/${params.id}?date=${e.target.value}`);
+            }}
+          />
+        </div> */}
       </div>
     </div>
   );
