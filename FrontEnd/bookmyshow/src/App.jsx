@@ -10,7 +10,7 @@ import "./stylesheets/sizes.css";
 import "./stylesheets/theme.css";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Admin from "./pages/admin";
-
+import TheaterForMovie from "./pages/TheatresForMovie";
 function App() {
   return (
     <>
@@ -35,8 +35,15 @@ function App() {
               </ProtectedRoute>
             }
           />
-          {/* <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-          <Route path="/movie/:id" element={<ProtectedRoute><TheatresForMovie /></ProtectedRoute>} /> */}
+          {/* <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} /> */}
+          <Route
+            path="/movie/:id"
+            element={
+              <ProtectedRoute>
+                <TheaterForMovie />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>

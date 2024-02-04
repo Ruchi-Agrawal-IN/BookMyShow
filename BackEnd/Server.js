@@ -19,6 +19,8 @@ app.use("/api/users", userRoute);
 // movie Route
 const moviesRoute = require("./routes/MovieRoute");
 app.use("/api/movies", moviesRoute);
+const theatresRoute = require("./routes/TheaterRoute");
+app.use("/api/theatres", theatresRoute);
 
 //start express server
 try {

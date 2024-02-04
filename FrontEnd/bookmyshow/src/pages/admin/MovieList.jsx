@@ -5,7 +5,7 @@ import moment from "moment";
 import { Button, message, Table } from "antd";
 import { useDispatch } from "react-redux";
 // import { HideLoading, ShowLoading } from "../../redux/loadersSlice";
-import { DeleteMovie, GetAllMovies } from "../../apicalls/movies";
+import { DeleteMovie, GetAllMovies } from "../../apiCalls/Movies";
 
 function MoviesList() {
   const [movies, setMovies] = useState([]);
