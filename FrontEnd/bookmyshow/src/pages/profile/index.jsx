@@ -1,6 +1,6 @@
 import { Tabs } from "antd";
 import PageTitle from "../../components/PageTitle";
-import TheatresList from "./TheatresList";
+import UserTheatreList from "./UserTheatreList";
 // import Bookings from "./Bookings";
 
 function Profile() {
@@ -13,7 +13,7 @@ function Profile() {
           Bookings
         </Tabs.TabPane>
         <Tabs.TabPane tab="Apply for Theater" key="2">
-          <TheatresList />
+          <UserTheatreList />
         </Tabs.TabPane>
       </Tabs>
     </div>

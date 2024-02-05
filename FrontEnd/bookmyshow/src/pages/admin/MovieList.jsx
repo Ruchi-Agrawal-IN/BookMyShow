@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import MovieForm from "./MovieForm";
 import moment from "moment";
 import { Button, message, Table } from "antd";
-import { useDispatch } from "react-redux";
+//import { useDispatch } from "react-redux";
 // import { HideLoading, ShowLoading } from "../../redux/loadersSlice";
 import { DeleteMovie, GetAllMovies } from "../../apiCalls/Movies";
 
@@ -12,7 +12,7 @@ function MoviesList() {
   const [showMovieFormModal, setShowMovieFormModal] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [formType, setFormType] = useState("add");
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const getData = async () => {
     try {
       const response = await GetAllMovies();

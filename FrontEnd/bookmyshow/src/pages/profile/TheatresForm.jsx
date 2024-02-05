@@ -16,7 +16,7 @@ function TheatreForm({
   showTheatreFormModal,
   setShowTheatreFormModal,
   formType,
-  //   setFormType,
+  // setFormType,
   selectedTheatre,
   setSelectedTheatre,
   getData,
@@ -112,14 +112,5 @@ function TheatreForm({
     </Modal>
   );
 }
-// TheatreForm.prototype = {
-//   showTheatreFormModal: Boolean,
-//   setShowTheatreFormModal: Boolean,
-//   formType: "add" | "edit",
-//   setFormType: "add" | "edit",
-//   selectedTheatre: TheaterModel,
-//   setSelectedTheatre: TheaterModel,
-//   getData?: []Theatre,
-// };
 
 export default TheatreForm;

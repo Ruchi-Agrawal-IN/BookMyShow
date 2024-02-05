@@ -1,26 +1,21 @@
 import { Table, message } from "antd";
 import { useEffect, useState } from "react";
 import { GetAllTheatres, UpdateTheatre } from "../../apiCalls/Theatres";
-function TheatresList() {
+function AdminTheatresList() {
   const [theatres, setTheatres] = useState([]);
-
-  const getData = async () => {
+  const getTheatresListForAdmin = async () => {
     try {
       const response = await GetAllTheatres();
-
       if (response.data.success) {
         message.success("Theatres fetched!");
         setTheatres(response.data.theatres);
       } else {
-        console.log(response.data.message);
         message.error(`Something went wrong: ${response.data.message}`);
       }
     } catch (error) {
-      console.log(error);
-      message.error(`Get All Theatre caught error: ${error.message}`);
+      message.error(`getTheatresListForAdmin caught error: ${error.message}`);
     }
   };
-
   // This will take a theatre object as argument,
   // Swap the isActive field, and simply call UpdateTheatre
   const handleStatusChange = async (theatre) => {
@@ -37,7 +32,7 @@ function TheatresList() {
         } else {
           message.success("Theatre approved successfully!");
         }
-        getData();
+        getTheatresListForAdmin();
       } else {
         message.error("Something went wrong");
         console.log(response.data.message);
@@ -47,11 +42,9 @@ function TheatresList() {
       console.log(MediaError);
     }
   };
-
   useEffect(() => {
-    getData();
+    getTheatresListForAdmin();
   }, []);
-
   const columns = [
     {
       title: "Name",
@@ -79,7 +72,7 @@ function TheatresList() {
     {
       title: "Status",
       dataIndex: "isActive",
-      render: (text) => {
+      render: (text, record) => {
         if (text) {
           return "Approved";
         } else {
@@ -121,5 +114,4 @@ function TheatresList() {
     </div>
   );
 }
-
-export default TheatresList;
+export default AdminTheatresList;
