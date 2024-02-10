@@ -14,7 +14,7 @@ function ProtectedRoute({ children }) {
   const getPresentUser = async () => {
     try {
       const response = await GetCurrentUser();
-      console.log(`response from getCurrentUser ${response}`);
+      console.log({ getCurrentUser: response });
       if (response.success) {
         dispatch(SetUser(response.data));
         navigate("/");

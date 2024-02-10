@@ -14,7 +14,8 @@ export const RegisterUser = async (payload) => {
 //loginuser
 export const LoginUser = async (payload) => {
   try {
-    const response = await axiosInstance.post(`${MODEL}/login`, payload);
+    const response = await axiosInstance().post(`${MODEL}/login`, payload);
+    console.log("Login API Response is ", response);
     return response;
   } catch (error) {
     return error;
@@ -24,7 +25,7 @@ export const LoginUser = async (payload) => {
 //get-current-user
 export const GetCurrentUser = async () => {
   try {
-    const response = await axiosInstance.get(`${MODEL}/get-current-user`);
+    const response = await axiosInstance().get(`${MODEL}/get-current-user`);
     return response.data;
   } catch (error) {
     return error;

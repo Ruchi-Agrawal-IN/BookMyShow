@@ -13,14 +13,15 @@ function Login() {
 
   const onFinish = async (values) => {
     try {
-      const { data } = await LoginUser(values);
-      if (data.success) {
-        message.success(data.message);
-        await localStorage.setItem("token", data.data);
+      const response = await LoginUser(values);
+      console.log("login api response", response);
+      if (response.data.success) {
+        message.success(response.data.message);
+        await localStorage.setItem("token", response.data.data);
         // navigate for next page
-        // navigate("/");
+        navigate("/");
       } else {
-        message.error(data.message);
+        message.error(response.data.message);
       }
     } catch (error) {
       message.error(`LoginUser API error: ${error.message}`);
@@ -49,7 +50,7 @@ function Login() {
           </Form.Item>
 
           <div className="flex flex-col mt-2 gap-1">
-            <Button fullWidth type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit">
               Login
             </Button>
             <Link to="/register" className="text-primary">
