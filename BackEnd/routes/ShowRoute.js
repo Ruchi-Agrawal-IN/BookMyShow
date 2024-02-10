@@ -25,7 +25,7 @@ router.get("/get-all-shows-by-theatre-id", authMiddleware, async (req, res) => {
     const shows = await Show.find({ owner: req.body.theatreId })
       .populate("movie")
       .populate("theatre");
-
+  console.log({ theatreId: req.body.theatreId, shows: shows });
     res.status(200).send({
       success: true,
       message: "Shows fetched",

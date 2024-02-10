@@ -21,12 +21,12 @@ export const GetAllTheatres = async () => {
   }
 };
 
-export const GetAllTheatresForMovie = async (payload) => {
+export const GetAllTheatresForMovie = async (movieId) => {
   try {
-    const response = await axiosInstance().post(
-      `${MODEL}/get-theatres-for-movie`,
-      payload
+    const response = await axiosInstance().get(
+      `${MODEL}/get-theatres-for-movie/${movieId}`
     );
+    console.log({ GetAllTheatresForMovie: response.data });
     return response;
   } catch (error) {
     return error;
