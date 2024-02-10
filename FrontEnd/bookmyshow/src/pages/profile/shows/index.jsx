@@ -8,33 +8,37 @@ import {
 } from "../../../apiCalls/Shows";
 import { GetAllMovies } from "../../../apiCalls/Movies";
 import PropTypes from "prop-types";
-import { useParams } from "react-router";
+
 
 function Shows({ openShowsModal, setOpenShowsModal, theatre }) {
   const [view, setView] = useState("list");
   const [shows, setShows] = useState([]);
   const [movies, setMovies] = useState([]);
-  const { id: theatreId } = useParams();
-  console.log({ movies });
+  console.log({ theatre: theatre, openShowsModal: openShowsModal });
   const getData = useCallback(async () => {
     try {
-      const getShowsListforTheatre = await GetShowsByTheatreId(theatreId);
+      const getShowsListforTheatre = await GetShowsByTheatreId(theatre._id);
       if (getShowsListforTheatre.data.success) {
+        console.log({
+          getShowsListforTheatre_shows: getShowsListforTheatre.data,
+        });
         setShows(getShowsListforTheatre.data.shows);
         message.success("shows fetched!");
+        console.log({ shows: shows });
       } else {
         message.error(getShowsListforTheatre.data.error);
       }
       const allMovies = await GetAllMovies();
       if (allMovies.data.success) {
         setMovies(allMovies.data.movies);
+        console.log({ allMovies: movies });
       } else {
         message.error("Something went wrong!");
       }
     } catch (error) {
       message.error(`Shows List for theatre fetching failed: ${error.message}`);
     }
-  }, [theatreId]);
+  }, [theatre._id]);
 
   useEffect(() => {
     getData();

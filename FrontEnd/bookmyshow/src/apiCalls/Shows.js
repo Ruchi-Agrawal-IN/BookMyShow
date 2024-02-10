@@ -12,6 +12,15 @@ export const GetShowsByTheatreId = async (theatreId) => {
   }
 };
 
+export const GetShowById = async (showId) => {
+  try {
+    const response = await axiosInstance().get(`/get-show-by-id/${showId}`);
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
 export const AddShow = async (payload) => {
   try {
     const response = await axiosInstance().post(`${MODEL}/add-show`, payload);

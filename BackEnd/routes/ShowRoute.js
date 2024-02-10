@@ -21,11 +21,11 @@ router.post("/add-show", async (req, res) => {
 });
 
 router.get(
-  "/get-all-shows-by-theatre-id/:theatreId",
+  `/get-all-shows-by-theatre-id/:theatreId`,
   authMiddleware,
   async (req, res) => {
     try {
-      const shows = await Show.find({ owner: req.params.theatreId })
+      const shows = await Show.find({ theatre: req.params.theatreId })
         .populate("movie")
         .populate("theatre");
       console.log({ theatreId: req.params.theatreId, shows: shows });
@@ -42,6 +42,25 @@ router.get(
     }
   }
 );
+
+router.get("/get-show-by-id/:showId", authMiddleware, async (req, res) => {
+  try {
+    const show = await Show.findById(req.params.showId)
+      .populate("movie")
+      .populate("theatre");
+
+    res.status(200).send({
+      success: true,
+      message: "Show fetched",
+      show,
+    });
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      message: "There was some issue in fetching this show.",
+    });
+  }
+});
 
 router.post("/update-show", authMiddleware, async (req, res) => {
   try {
