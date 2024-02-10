@@ -1,11 +1,10 @@
 import axiosInstance from "./axiosInstance";
 const MODEL = "shows";
 
-export const GetShowsByTheatreId = async (payload) => {
+export const GetShowsByTheatreId = async (theatreId) => {
   try {
     const response = await axiosInstance().get(
-      `${MODEL}/get-all-shows-by-theatre-id`,
-      payload
+      `${MODEL}/get-all-shows-by-theatre-id/${theatreId}`
     );
     return response;
   } catch (error) {

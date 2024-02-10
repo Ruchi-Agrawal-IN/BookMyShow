@@ -1,5 +1,5 @@
 import { Col, Form, Modal, Row, Table, Button, message } from "antd";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import moment from "moment";
 import {
   AddShow,
@@ -8,41 +8,37 @@ import {
 } from "../../../apiCalls/Shows";
 import { GetAllMovies } from "../../../apiCalls/Movies";
 import PropTypes from "prop-types";
+import { useParams } from "react-router";
 
 function Shows({ openShowsModal, setOpenShowsModal, theatre }) {
   const [view, setView] = useState("list");
   const [shows, setShows] = useState([]);
   const [movies, setMovies] = useState([]);
-
+  const { id: theatreId } = useParams();
   console.log({ movies });
-  const getShowsListforTheatre = async () => {
+  const getData = useCallback(async () => {
     try {
-      const response = await GetShowsByTheatreId({
-        theatreId: theatre._id,
-      });
-      if (response.data.success) {
-        setShows(response.data.shows);
+      const getShowsListforTheatre = await GetShowsByTheatreId(theatreId);
+      if (getShowsListforTheatre.data.success) {
+        setShows(getShowsListforTheatre.data.shows);
         message.success("shows fetched!");
       } else {
-        message.error(response.data.error);
+        message.error(getShowsListforTheatre.data.error);
+      }
+      const allMovies = await GetAllMovies();
+      if (allMovies.data.success) {
+        setMovies(allMovies.data.movies);
+      } else {
+        message.error("Something went wrong!");
       }
     } catch (error) {
       message.error(`Shows List for theatre fetching failed: ${error.message}`);
     }
-  };
-  const getAllMovies = async () => {
-    const moviesResponse = await GetAllMovies();
+  }, [theatreId]);
 
-    if (moviesResponse.data.success) {
-      setMovies(moviesResponse.data.movies);
-    } else {
-      message.error("Something went wrong!");
-    }
-  };
   useEffect(() => {
-    getShowsListforTheatre();
-    getAllMovies();
-  }, []);
+    getData();
+  }, [getData]);
   const columns = [
     {
       title: "Show Name",
@@ -110,7 +106,7 @@ function Shows({ openShowsModal, setOpenShowsModal, theatre }) {
       if (response.data.success) {
         message.success(response.data.message);
         setView("table");
-        getShowsListforTheatre();
+        getData();
       } else {
         message.error(response.data.message);
       }
@@ -126,7 +122,7 @@ function Shows({ openShowsModal, setOpenShowsModal, theatre }) {
       });
       if (response.data.success) {
         message.success(response.data.message);
-        getShowsListforTheatre();
+        getData();
       } else {
         message.error(response.data.message);
       }
@@ -167,7 +163,7 @@ function Shows({ openShowsModal, setOpenShowsModal, theatre }) {
       {view === "list" && <Table columns={columns} dataSource={shows} />}
 
       {view === "form" && (
-        <Form layout="vertical" onFinish={handleAddSHow}>
+        <Form layout="vertical" onFinish={handleAddShow}>
           <Row gutter={[16, 16]}>
             <Col span={8}>
               <Form.Item
