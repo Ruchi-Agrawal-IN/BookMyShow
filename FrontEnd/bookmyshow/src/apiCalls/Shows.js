@@ -3,7 +3,7 @@ const MODEL = "shows";
 
 export const GetShowsByTheatreId = async (payload) => {
   try {
-    const response = await axiosInstance.get(
+    const response = await axiosInstance().get(
       `${MODEL}/get-all-shows-by-theatre-id`,
       payload
     );

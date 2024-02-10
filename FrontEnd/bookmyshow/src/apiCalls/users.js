@@ -5,7 +5,7 @@ import axiosInstance from "./axiosInstance";
 const MODEL = "users";
 export const RegisterUser = async (payload) => {
   try {
-    const response = await axiosInstance.post(`${MODEL}/register`, payload);
+    const response = await axiosInstance().post(`${MODEL}/register`, payload);
     return response;
   } catch (error) {
     return error;
