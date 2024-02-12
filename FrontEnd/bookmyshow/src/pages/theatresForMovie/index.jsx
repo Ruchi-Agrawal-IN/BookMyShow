@@ -40,7 +40,7 @@ function TheatresForMovie() {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-2">
+      <div className="flex justify-between items-center  m-3 pl-2 pr-2  w-screen">
         <div>
           <h1 className="text-2xl uppercase">
             {movie.title} ({movie.language})
@@ -81,13 +81,15 @@ function TheatresForMovie() {
             <div className="divider"></div>
 
             <div className="flex gap-2">
+              {console.log({ theatre_shows: theatre })}
               {theatre.shows
                 .sort(
-                  (a, b) => moment(a.time, "HH:mm") - moment(b.time, "HH:mm")
+                  (a, b) =>
+                    moment(a._doc.time, "HH:mm") - moment(b._doc.time, "HH:mm")
                 )
                 .map((show) => (
                   <div
-                    key={show._id}
+                    key={show._doc._id}
                     style={{
                       backgroundColor: isHovering ? "#DF1827" : "white",
                       color: isHovering ? "white" : "#DF1827",
@@ -96,12 +98,22 @@ function TheatresForMovie() {
                     // onMouseLeave={handleMouseLeave}
                     className="card p-1 cursor-pointer border-primary"
                     onClick={() => {
-                      navigate(`/book-show/${show._id}`);
+                      navigate(`/book-show/${show._doc._id}`);
                     }}
+                    // onMouseEnter={() => {
+                    //   console.log("Show:", show._doc);
+                    //   console.log("Show date:", show._doc.date);
+                    //   console.log("Show time:", show._doc.time);
+                    //   setIsHovering(true);
+                    // }}
+                    // onMouseLeave={() => {
+                    //   setIsHovering(false);
+                    // }}
                   >
                     <h1 className="text-sm">
-                      {moment(show.time, "HH:mm").format("hh:mm A")}
+                      {moment(show._doc.time, "HH:mm").format("hh:mm A")}
                     </h1>
+                    <h5>{moment(show._doc.date).format("ddd / DD:MM:YYYY")}</h5>
                   </div>
                 ))}
             </div>

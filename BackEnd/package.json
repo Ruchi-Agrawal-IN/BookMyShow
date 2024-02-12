@@ -19,7 +19,8 @@
     "kill-port": "^2.0.1",
     "mongodb": "^6.3.0",
     "mongoose": "^8.1.0",
-    "port": "^0.8.1"
+    "port": "^0.8.1",
+    "stripe": "^14.16.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.3"

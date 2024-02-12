@@ -51,7 +51,7 @@ function Shows({ openShowsModal, setOpenShowsModal, theatre }) {
     {
       title: "Date",
       dataIndex: "date",
-      render: (text, record) => {
+      render: (text) => {
         return moment(text).format("MMM Do YYYY");
       },
     },

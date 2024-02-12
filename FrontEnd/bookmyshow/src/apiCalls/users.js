@@ -1,5 +1,5 @@
 //const { axiosInstance } = require("./axiosInstance");
-import axiosInstance from "./axiosInstance";
+import axiosInstance from "./AxiosInstance";
 
 //Register a new User
 const MODEL = "users";

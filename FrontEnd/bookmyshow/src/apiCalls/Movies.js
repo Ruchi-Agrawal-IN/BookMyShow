@@ -1,4 +1,4 @@
-import axiosInstance from "./axiosInstance.js";
+import axiosInstance from "./AxiosInstance.js";
 const MODEL = "movies";
 export const GetAllMovies = async () => {
   try {

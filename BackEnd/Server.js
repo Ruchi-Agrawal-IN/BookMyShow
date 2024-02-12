@@ -15,16 +15,20 @@ app.use(cors());
 // create routes
 //userRoute
 const userRoute = require("./routes/UserRoute");
-app.use("/api/users", userRoute);
-// movie Route
 const moviesRoute = require("./routes/MovieRoute");
-app.use("/api/movies", moviesRoute);
-//theatre route
 const theatresRoute = require("./routes/TheaterRoute");
+const showsRoute = require("./routes/ShowRoute");
+const bookingRoute = require("./routes/BookingRoute");
+// movie Route
+
+//theatre route
+
+app.use("/api/users", userRoute);
+app.use("/api/movies", moviesRoute);
 app.use("/api/theatres", theatresRoute);
 //shows route
-const showsRoute = require("./routes/ShowRoute");
 app.use("/api/shows", showsRoute);
+app.use("/api/bookings", bookingRoute);
 //start express server
 try {
   app.listen(PORT, () => {

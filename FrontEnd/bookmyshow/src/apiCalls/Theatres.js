@@ -1,4 +1,4 @@
-import axiosInstance from "./axiosInstance";
+import axiosInstance from "./AxiosInstance";
 const MODEL = "theatres";
 export const GetTheatresByUserId = async (payload) => {
   try {

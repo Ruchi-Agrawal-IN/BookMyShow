@@ -12,6 +12,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Admin from "./pages/admin";
 import TheaterForMovie from "./pages/theatresForMovie";
 import Profile from "./pages/profile";
+import Bookshow from "./pages/bookShow";
 function App() {
   return (
     <>
@@ -49,6 +50,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <TheaterForMovie />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/book-show/:showId"
+            element={
+              <ProtectedRoute>
+                <Bookshow />
               </ProtectedRoute>
             }
           />
