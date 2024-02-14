@@ -85,7 +85,7 @@ function AdminTheatresList() {
       dataIndex: "action",
       render: (text, record) => {
         return (
-          <div className="flex gap-1">
+          <div className="flex gap-1 m-3 pl-2 pr-2  w-screen">
             {record.isActive && (
               <span
                 className="underline"

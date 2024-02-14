@@ -46,6 +46,7 @@ router.get(
 router.get("/get-show-by-id/:showId", authMiddleware, async (req, res) => {
   try {
     const show = await Show.findById(req.params.showId)
+      .lean()
       .populate("movie")
       .populate("theatre");
     console.log({ show_from_get_show_by_id: show });

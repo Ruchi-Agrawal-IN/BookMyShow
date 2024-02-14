@@ -6,7 +6,8 @@ const cors = require("cors");
 //create a .env file and config it here
 require("dotenv").config();
 const dbConfig = require("./config/DBConfig");
-const PORT = "8081";
+const port = process.env.PORT;
+const PORT = port || "8081";
 // use middleware <app.use>
 //  below use middleware is taking json as input middleware
 const app = express();
@@ -30,9 +31,10 @@ app.use("/api/theatres", theatresRoute);
 app.use("/api/shows", showsRoute);
 app.use("/api/bookings", bookingRoute);
 //start express server
+
 try {
   app.listen(PORT, () => {
-    debug("Server running from port: " + PORT);
+    console.log("Server running from port: " + PORT);
   });
 } catch (e) {
   debug("server connection failed error is: ", e.message);
